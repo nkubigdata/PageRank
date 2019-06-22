@@ -36,6 +36,7 @@ def ID_list(path,num_block):
     ## 返回list,最大编号
     index=[]
     max_node=0
+    print("[*]Pagerank with block stripe matrix...")
     for i in tqdm(range(num_block)):
         block=path+str(i)+'.txt'
         f=open(block,'r')
@@ -49,6 +50,7 @@ def ID_list(path,num_block):
             index.append(int(y))
         f.close()
     index=list(np.unique(index))
+    print("initialize matrix blocks finished..")
     return index,max_node
 
 def preprocess(index,max_node):
@@ -59,10 +61,11 @@ def preprocess(index,max_node):
     for i in range(len(index)):
         sign[index[i]]=i;
     initial_matrix=np.ones(len(index))/len(index)
+    print("[*]initialize matrix finished..")
     return sign ,initial_matrix
 
 def out_degree(path,num_blocks,index,sign):
-    #出链
+    # 获取各节点出度
     out = np.zeros(len(index))
     for i in range(num_blocks):
         block=path+str(i)+'.txt'

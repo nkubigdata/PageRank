@@ -28,13 +28,15 @@ index, max_node = preLoad.ID_list(outPath, num_blocks)
 sign, r = preLoad.preprocess(index, max_node)
 
 out = preLoad.out_degree(outPath, num_blocks, index, sign)
+
 print('[+]Pagerank with block stripe matrix finished!')
 
 # print(out)
 #index,path,num_blocks,sign,r,out,beta
+
 r_final = pagerank.block_stripe_page_rank(outPath, num_blocks, index, sign, r, out, 0.85)
 
-print('-----------------------')
+print('\n-----------------------')
 
 top_index, top_r = pagerank.get_top(100, r_final,sign)
 
